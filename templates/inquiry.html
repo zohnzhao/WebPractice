@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}查询往年可上学校{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="inquiry_form" class="form-inline" style="padding-top: 20px">
+                    <div class="form-group mb-2">
+                        <label>请输入成绩：</label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">成绩</label>
+                        <input type="number" class="form-control" id="inputPassword2" placeholder="成绩" min="0"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">查询</button>
+                </form>
+                <div id="inquiry_div">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sctript %}
+    <script type="text/javascript">
+        $("#inquiry_form").submit(function () {
+            //异步提交
+
+            jQuery.ajax({
+                url: "{% url 'inquiry_core' %}",
+                type: "POST",
+                data: {
+                    core: $("#inputPassword2").val(),
+                },
+                cache: false,
+                headers: {"X-CSRFtoken": '{{ csrf_token }}'},
+                success: function (data) {
+                    console.log(data);
+                    //插入数据
+                    if (data['status'] == "SUCCESS") {
+                        var shcoolcore = '<div id="inquiry_div"><ul class="list-group" id = "inquiry_ul"> </ul></div>'
+                        $("#inquiry_div").replaceWith(shcoolcore);
+                        $.each(data['schoolcore'], function (index, item) {
+                            $("#inquiry_ul").append('<a href="/schooldetail/' + item[0] + '" ><li class="list-group-item">' + item[1] + '&nbsp;地区：'+ item[2] + '&nbsp;'+item[3]+ '&nbsp;' + item[4] + '&nbsp;最低分：' + item[8] + '</li></a>')
+                        })
+                    } else {
+                        var shcoolcore = '<div id="specialtyscore_div">' + $("#specialtyscore_year").val() + '<p>' + data['schoolcore'] + ' </p></div>'
+                        $("#specialtyscore_div").replaceWith(shcoolcore);
+                    }
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+            return false;
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ schooldetails.name }}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="{{ schooldetails.logo }}" width="100px" height="100px" alt="{{ schooldetails.name }}"
+                             class="img-thumbnail">
+                    </div>
+                    <div class="col-md-11">
+                        <h3>{{ schooldetails.name }}</h3>
+                        <span class="badge badge-primary">{{ schooldetails.tag1 }}</span>
+                        <span class="badge badge-primary">{{ schooldetails.tag2 }}</span>
+                        <span class="badge badge-primary">{{ schooldetails.tag3 }}</span>
+                        <span class="badge badge-primary">{{ schooldetails.tag4 }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            所在地区：<b>{{ schooldetails.area }}</b> &nbsp;&nbsp;
+                            学校类型：<b>{{ schooldetails.level }}</b><br>
+                            招生电话：<b>{{ schooldetails.telephone }}</b> &nbsp;
+                            学校网址：<b>{{ schooldetails.weburl }}</b>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4>学校简介：</h4> <h5>{{ schooldetails.introduce|linebreaksbr }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>学校录取成绩查询</h3>
+                            <form id="select_form">
+                                <div class="form-group">
+                                    <select id="select_province" class="form-control-sm">
+                                        <option>北京</option>
+                                        <option>
+                                            天津
+                                        </option>
+                                        <option>
+                                            河北
+                                        </option>
+                                        <option>
+                                            山西
+                                        </option>
+                                        <option>
+                                            内蒙古
+                                        </option>
+                                        <option>
+                                            辽宁
+                                        </option>
+                                        <option>
+                                            吉林
+                                        </option>
+                                        <option>
+                                            黑龙江
+                                        </option>
+                                        <option>
+                                            上海
+                                        </option>
+                                        <option>
+                                            江苏
+                                        </option>
+                                        <option>
+                                            浙江
+                                        </option>
+                                        <option>
+                                            安徽
+                                        </option>
+                                        <option>
+                                            福建
+                                        </option>
+                                        <option>
+                                            江西
+                                        </option>
+                                        <option>
+                                            山东
+                                        </option>
+                                        <option>
+                                            河南
+                                        </option>
+                                        <option>
+                                            湖北
+                                        </option>
+                                        <option>
+                                            湖南
+                                        </option>
+                                        <option>
+                                            广东
+                                        </option>
+                                        <option>
+                                            广西
+                                        </option>
+                                        <option>
+                                            海南
+                                        </option>
+                                        <option>
+                                            重庆
+                                        </option>
+                                        <option>
+                                            四川
+                                        </option>
+                                        <option>
+                                            贵州
+                                        </option>
+                                        <option>
+                                            云南
+                                        </option>
+                                        <option>
+                                            西藏
+                                        </option>
+                                        <option>
+                                            陕西
+                                        </option>
+                                        <option>
+                                            甘肃
+                                        </option>
+                                        <option>
+                                            青海
+                                        </option>
+                                        <option>
+                                            宁夏
+                                        </option>
+                                        <option>
+                                            新疆
+                                        </option>
+                                        <option>
+                                            台湾
+                                        </option>
+                                        <option>
+                                            香港
+                                        </option>
+                                        <option>
+                                            澳门
+                                        </option>
+                                    </select>
+                                    <select id="select_pici" class="form-control-sm">
+                                        <option>理科</option>
+                                        <option>文科</option>
+                                    </select>
+                                    <select id="select_year" class="form-control-sm">
+                                        <option>2018</option>
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">查询</button>
+                                </div>
+                            </form>
+                            <div id="select-shcoolcore">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>专业录取成绩查询</h3>
+                            <form id="specialtyscore_form">
+                                <div class="form-group">
+                                    <select id="specialtyscore_province" class="form-control-sm">
+                                        <option>北京</option>
+                                        <option>
+                                            天津
+                                        </option>
+                                        <option>
+                                            河北
+                                        </option>
+                                        <option>
+                                            山西
+                                        </option>
+                                        <option>
+                                            内蒙古
+                                        </option>
+                                        <option>
+                                            辽宁
+                                        </option>
+                                        <option>
+                                            吉林
+                                        </option>
+                                        <option>
+                                            黑龙江
+                                        </option>
+                                        <option>
+                                            上海
+                                        </option>
+                                        <option>
+                                            江苏
+                                        </option>
+                                        <option>
+                                            浙江
+                                        </option>
+                                        <option>
+                                            安徽
+                                        </option>
+                                        <option>
+                                            福建
+                                        </option>
+                                        <option>
+                                            江西
+                                        </option>
+                                        <option>
+                                            山东
+                                        </option>
+                                        <option>
+                                            河南
+                                        </option>
+                                        <option>
+                                            湖北
+                                        </option>
+                                        <option>
+                                            湖南
+                                        </option>
+                                        <option>
+                                            广东
+                                        </option>
+                                        <option>
+                                            广西
+                                        </option>
+                                        <option>
+                                            海南
+                                        </option>
+                                        <option>
+                                            重庆
+                                        </option>
+                                        <option>
+                                            四川
+                                        </option>
+                                        <option>
+                                            贵州
+                                        </option>
+                                        <option>
+                                            云南
+                                        </option>
+                                        <option>
+                                            西藏
+                                        </option>
+                                        <option>
+                                            陕西
+                                        </option>
+                                        <option>
+                                            甘肃
+                                        </option>
+                                        <option>
+                                            青海
+                                        </option>
+                                        <option>
+                                            宁夏
+                                        </option>
+                                        <option>
+                                            新疆
+                                        </option>
+                                        <option>
+                                            台湾
+                                        </option>
+                                        <option>
+                                            香港
+                                        </option>
+                                        <option>
+                                            澳门
+                                        </option>
+                                    </select>
+                                    <select id="specialtyscore_pici" class="form-control-sm">
+                                        <option>理科</option>
+                                        <option>文科</option>
+                                    </select>
+                                    <select id="specialtyscore_year" class="form-control-sm">
+                                        <option>2018</option>
+                                        <option>2017</option>
+                                        <option>2016</option>
+                                        <option>2015</option>
+                                        <option>2014</option>
+                                        <option>2013</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">查询</button>
+                                </div>
+                            </form>
+                            <div id="specialtyscore_div">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>专业介绍</h3>
+                            {% for specialty in specialtydetails %}
+                                <div class="card" style="width: 1000px;">
+                                    <div class="card-header">
+                                        {{ specialty.name }}
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{ specialty.introduce }}</li>
+                                    </ul>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block sctript %}
+    <script type="text/javascript">
+        $("#specialtyscore_form").submit(function () {
+            //异步提交
+
+            jQuery.ajax({
+                url: "{% url 'specialtycore' %}",
+                type: "POST",
+                data: {
+                    schoolname: '{{ schooldetails.name }}',
+                    province: $("#specialtyscore_province").val(),
+                    pici: $("#specialtyscore_pici").val(),
+                    year: $("#specialtyscore_year").val(),
+                },
+                cache: false,
+                headers: {"X-CSRFtoken": '{{ csrf_token }}'},
+                success: function (data) {
+                    console.log(data);
+                    //插入数据
+                    if (data['status'] == "SUCCESS") {
+                        var shcoolcore = '<div id="specialtyscore_div"> <table class="table"> <thead> <tr> <th scope="col">{{ schooldetails.name }}</th> <th scope="col">' + $("#specialtyscore_province").val() + '</th> <th scope="col">' + $("#specialtyscore_pici").val() + '</th> <th scope="col">' + $("#specialtyscore_year").val() + '</th> </tr><tr> <th scope="col">专业</th> <th scope="col">最高分</th> <th scope="col">平均分</th> <th scope="col">最低分</th> </tr></thead><tbody id="select-tbody"> </tbody></div>'
+                        $("#specialtyscore_div").replaceWith(shcoolcore);
+                        $.each(data['schoolcore'], function (index, item) {
+                            $("#select-tbody").append('<tr><th scope="row">' + item[4] + '</th><th>' + item[5] + '</th><th>' + item[6] + '</th><th>' + item[7] + '</th></tr>')
+                        })
+                    } else {
+                        var shcoolcore = '<div id="specialtyscore_div">' + $("#specialtyscore_year").val() + '<p>' + data['schoolcore'] + ' </p></div>'
+                        $("#specialtyscore_div").replaceWith(shcoolcore);
+                    }
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+            return false;
+        });
+        $("#select_form").submit(function () {
+            //异步提交
+
+            jQuery.ajax({
+                url: "{% url 'schoolcore' %}",
+                type: "POST",
+                data: {
+                    schoolname: '{{ schooldetails.name }}',
+                    province: $("#select_province").val(),
+                    pici: $("#select_pici").val(),
+                    year: $("#select_year").val(),
+                },
+                cache: false,
+                headers: {"X-CSRFtoken": '{{ csrf_token }}'},
+                success: function (data) {
+                    console.log(data);
+                    //插入数据
+                    if (data['status'] == "SUCCESS") {
+                        var shcoolcore = '<div id="select-shcoolcore"> <table class="table"> <thead> <tr> <th scope="col">{{ schooldetails.name }}</th> <th scope="col">' + $("#select_province").val() + '</th> <th scope="col">' + $("#select_pici").val() + '</th> <th scope="col">' + $("#select_year").val() + '</th> </tr><tr> <th scope="col">批次</th> <th scope="col">最高分</th> <th scope="col">平均分</th> <th scope="col">最低分</th> </tr></thead><tbody id="select-tbody"> </tbody></div>'
+                        $("#select-shcoolcore").replaceWith(shcoolcore);
+                        $.each(data['schoolcore'], function (index, item) {
+                            $("#select-tbody").append('<tr><th scope="row">' + item[3] + '</th><th>' + item[5] + '</th><th>' + item[6] + '</th><th>' + item[7] + '</th></tr>')
+                        })
+                    } else {
+                        var shcoolcore = '<div id="select-shcoolcore">' + data['schoolcore'] + '<p></p></div>'
+                        $("#select-shcoolcore").replaceWith(shcoolcore);
+                    }
+
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+            return false;
+        });
+    </script>
+{% endblock %}

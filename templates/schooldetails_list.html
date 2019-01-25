@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}大学列表{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3>一共有{{ schooldetails_list.paginator.count }}所学校信息</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for schooldetail in schooldetails_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'schooldetail' schooldetail.id %}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img src="{{ schooldetail.logo }}" width="70px" height="70px"
+                                         alt="{{ schooldetail.name }}" class="img-thumbnail">
+                                </div>
+                                <div class="col-md-11">
+                                    <h5>{{ schooldetail.name }}</h5>
+                                    <span class="badge badge-primary">{{ schooldetail.tag1 }}</span>
+                                    <span class="badge badge-primary">{{ schooldetail.tag2 }}</span>
+                                    <span class="badge badge-primary">{{ schooldetail.tag3 }}</span>
+                                    <span class="badge badge-primary">{{ schooldetail.tag4 }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            <li class="list-group-item">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        {% if schooldetails_list.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'schoollist' 1 %}" tabindex="-1">第一页</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{% url 'schoollist' schooldetails_list.previous_page_number %}">{{ schooldetails_list.previous_page_number }}</a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item active">
+                            <a class="page-link" href="#">{{ schooldetails_list.number }} <span class="sr-only">(current)</span></a>
+                        </li>
+                        {% if schooldetails_list.has_next %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{% url 'schoollist' schooldetails_list.next_page_number %}">{{ schooldetails_list.next_page_number }}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="{% url 'schoollist' schooldetails_list.paginator.num_pages %}">最后一页</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </li>
+        </ul>
+
+    </div>
+
+
+{% endblock %}
